@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georgian Bonds Tokenization - Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 16px;
+            padding: 60px;
+            margin: 30px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1);
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        h1 {
+            color: #1e3c72;
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #2a5298;
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: #1e3c72;
+            font-size: 28px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .comparison-box {
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .current-process {
+            background: linear-gradient(135deg, #ff6b6b22, #ff8e8e22);
+            border: 3px solid #ff6b6b;
+        }
+
+        .solana-process {
+            background: linear-gradient(135deg, #4ECDC422, #45B7D122);
+            border: 3px solid #4ECDC4;
+        }
+
+        .comparison-box h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 32px;
+        }
+
+        .steps {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .steps li {
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            background: #1e3c72;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .solana-process .step-number {
+            background: #4ECDC4;
+        }
+
+        .time-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .solana-process .time-badge {
+            background: #4ECDC4;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #4ECDC4;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card h4 {
+            color: #1e3c72;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .problem-section {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .solution-section {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .key-points {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .key-points li {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid #4ECDC4;
+            border-radius: 4px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .risk-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .risk-card {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .risk-card h4 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .risk-card .answer {
+            color: #4ECDC4;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 50px;
+            height: 50px;
+            background: #4ECDC4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .timeline-content h4 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            .comparison-container,
+            .benefits-grid,
+            .risk-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4ECDC4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.6);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .slide {
+                page-break-after: always;
+                box-shadow: none;
+                margin: 0;
+                border: 1px solid #ddd;
+            }
+            .print-button {
+                display: none;
+            }
+        }
+
+        .bond-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .bond-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .bond-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .bond-table tr:hover {
+            background: #f5f7fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <h1>🇬🇪 Tokenizing Georgian Sovereign Bonds</h1>
+            <p class="subtitle">Unlocking Global Capital Markets Through Blockchain Innovation</p>
+            <div style="margin-top: 60px;">
+                <p style="font-size: 20px; color: #666; line-height: 1.8;">
+                    A proposal to partner with <strong style="color: #4ECDC4;">Solana Foundation</strong> to make Georgian local bonds accessible to global investors, reducing borrowing costs and positioning Georgia as a regional fintech leader.
+                </p>
+            </div>
+            <div class="stat-box" style="margin-top: 50px;">
+                <div class="stat-number">$10B+</div>
+                <div class="stat-label">Potential New Investment Pool</div>
+            </div>
+            <span class="slide-number">1</span>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <h2>📉 The Current Challenge</h2>
+            
+            <div class="stat-box">
+                <div class="stat-number">1%</div>
+                <div class="stat-label">Foreign ownership of Georgian treasury bonds (down from 3.8% in 2024)</div>
+            </div>
+
+            <div class="problem-section">
+                <h3 style="margin-top: 0;">Why Foreign Investors Avoid Georgian Local Bonds</h3>
+                <ul class="key-points">
+                    <li><strong>Complex Access:</strong> Requires Georgian bank account and local broker relationships</li>
+                    <li><strong>Auction-Only System:</strong> Can't buy/sell continuously like other securities</li>
+                    <li><strong>Currency Barriers:</strong> Must navigate GEL conversion before investing</li>
+                    <li><strong>Settlement Friction:</strong> Multi-day settlement vs instant global markets</li>
+                    <li><strong>Limited Liquidity:</strong> Small local market with infrequent trading</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 30px; font-size: 20px; font-weight: 600; color: #ff6b6b;">
+                Result: Despite offering 8-9% USD yields, Georgian bonds struggle to attract foreign capital
+            </p>
+            <span class="slide-number">2</span>
+        </div>
+
+        <!-- Slide 3: Current vs Solana Process -->
+        <div class="slide">
+            <h2>🔄 Investment Process Comparison</h2>
+            
+            <div class="comparison-container">
+                <div class="comparison-box current-process">
+                    <h3><span class="icon">❌</span> Current Process</h3>
+                    <ul class="steps">
+                        <li>
+                            <span class="step-number">1</span>
+                            <span>Research Georgian banking requirements</span>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <span>Travel to Georgia or find local representative</span>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <span>Open Georgian bank account (2-4 weeks)</span>
+                        </li>
+                        <li>
+                            <span class="step-number">4</span>
+                            <span>Obtain Georgian tax ID</span>
+                        </li>
+                        <li>
+                            <span class="step-number">5</span>
+                            <span>Convert currency to GEL</span>
+                        </li>
+                        <li>
+                            <span class="step-number">6</span>
+                            <span>Contact local broker for auction access</span>
+                        </li>
+                        <li>
+                            <span class="step-number">7</span>
+                            <span>Wait for next auction date</span>
+                        </li>
+                        <li>
+                            <span class="step-number">8</span>
+                            <span>Place bid through bank</span>
+                        </li>
+                        <li>
+                            <span class="step-number">9</span>
+                            <span>Wait 3-5 days for settlement</span>
+                        </li>
+                    </ul>
+                    <div class="time-badge">⏰ Total Time: 4-8 weeks</div>
+                </div>
+
+                <div class="comparison-box solana-process">
+                    <h3><span class="icon">✅</span> With Solana</h3>
+                    <ul class="steps">
+                        <li>
+                            <span class="step-number">1</span>
+                            <span>Open digital wallet (5 minutes)</span>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <span>Complete KYC verification (1-2 days)</span>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <span>Browse available Georgian bonds</span>
+                        </li>
+                        <li>
+                            <span class="step-number">4</span>
+                            <span>Click "Buy" - instant settlement</span>
+                        </li>
+                        <li>
+                            <span class="step-number">5</span>
+                            <span>Trade 24/7 on secondary market</span>
+                        </li>
+                    </ul>
+                    <div class="time-badge">⚡ Total Time: 30 seconds (after KYC)</div>
+                </div>
+            </div>
+            <span class="slide-number">3</span>
+        </div>
+
+        <!-- Slide 4: Georgian Bond Market -->
+        <div class="slide">
+            <h2>💰 Current Georgian Bond Market</h2>
+            <p style="font-size: 18px; margin-bottom: 20px;">USD-denominated local bonds with attractive yields that foreign investors can't easily access:</p>
+            
+            <table class="bond-table">
+                <thead>
+                    <tr>
+                        <th>Issuer</th>
+                        <th>Amount (USD M)</th>
+                        <th>Coupon</th>
+                        <th>Maturity</th>
+                        <th>Yield</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Geo. Renewable Power</td>
+                        <td>80</td>
+                        <td>7.00%</td>
+                        <td>Oct-27</td>
+                        <td>7.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Georgia Capital</td>
+                        <td>150</td>
+                        <td>8.50%</td>
+                        <td>Aug-28</td>
+                        <td>8.13%</td>
+                    </tr>
+                    <tr>
+                        <td>Silk Real Estate</td>
+                        <td>20</td>
+                        <td>9.25%</td>
+                        <td>Sep-26</td>
+                        <td>8.63%</td>
+                    </tr>
+                    <tr>
+                        <td>Geosteel</td>
+                        <td>5</td>
+                        <td>8.50%</td>
+                        <td>Dec-25</td>
+                        <td>8.75%</td>
+                    </tr>
+                    <tr>
+                        <td>IG Development</td>
+                        <td>20</td>
+                        <td>8.50%</td>
+                        <td>Dec-25</td>
+                        <td>8.75%</td>
+                    </tr>
+                    <tr>
+                        <td>PSC BadaBadi</td>
+                        <td>20</td>
+                        <td>7.00%</td>
+                        <td>Aug-27</td>
+                        <td>7.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Georgia Real Estate</td>
+                        <td>25</td>
+                        <td>8.50%</td>
+                        <td>Aug-26</td>
+                        <td>8.50%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: #fff3cd; padding: 25px; border-radius: 8px; margin-top: 30px; border-left: 5px solid #ffc107;">
+                <p style="font-size: 20px; font-weight: 600; color: #856404;">
+                    <strong>The Opportunity:</strong> These high-yielding bonds in USD are perfect for tokenization. Global investors are actively seeking 7-9% yields in stable emerging markets.
+                </p>
+            </div>
+            <span class="slide-number">4</span>
+        </div>
+
+        <!-- Slide 5: Benefits -->
+        <div class="slide">
+            <h2>🚀 Transformative Benefits for Georgia</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>💵 Lower Borrowing Costs</h4>
+                    <p>Expanding investor base creates competition for Georgian bonds, potentially reducing yields by 0.5-1.5%. This translates to <strong>tens of millions in annual savings</strong>.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>🌍 Global Capital Access</h4>
+                    <p>Tap into the <strong>$100+ trillion global bond market</strong>. Millions of investors worldwide can now easily buy Georgian bonds from their phones.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>💧 Enhanced Liquidity</h4>
+                    <p><strong>24/7 trading</strong> with instant settlement creates deeper, more efficient markets. Better liquidity = better pricing = lower costs.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>🏆 Regional Leadership</h4>
+                    <p>Become the <strong>first Caucasus nation</strong> to tokenize sovereign debt. Position Georgia as a forward-thinking fintech hub attracting blockchain companies.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>📊 Transparency & Efficiency</h4>
+                    <p><strong>Blockchain immutability</strong> provides real-time visibility, reduced intermediary costs, and streamlined administration for the Ministry of Finance.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>💪 Currency Support</h4>
+                    <p>More foreign investors buying GEL-denominated assets = <strong>increased demand for GEL</strong>, supporting currency stability.</p>
+                </div>
+            </div>
+            <span class="slide-number">5</span>
+        </div>
+
+        <!-- Slide 6: Market Opportunity -->
+        <div class="slide">
+            <h2>📈 The Market Opportunity</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
+                <div class="stat-box">
+                    <div class="stat-number">$100T+</div>
+                    <div class="stat-label">Global Bond Market Size</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-number">$3T+</div>
+                    <div class="stat-label">Emerging Market Bonds</div>
+                </div>
+            </div>
+
+            <div class="solution-section" style="margin-top: 40px;">
+                <h3 style="margin-top: 0;">What This Means for Georgia</h3>
+                <ul class="key-points">
+                    <li><strong>Retail Investors:</strong> Millions of global retail investors use platforms like Robinhood, eToro, and Revolut. They're actively seeking 7-9% yields but can't access Georgian bonds today.</li>
+                    <li><strong>Crypto-Native Capital:</strong> $2+ trillion in crypto market cap. Many crypto investors want to diversify into real-world assets with yield - your bonds are perfect for this.</li>
+                    <li><strong>Institutional DeFi:</strong> Major institutions like BlackRock and Franklin Templeton are tokenizing bonds. Georgia can ride this wave.</li>
+                    <li><strong>First-Mover Advantage:</strong> Your regional competitors aren't doing this yet. Move now and capture attention from international financial media and investors.</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 30px; font-size: 22px; text-align: center; font-weight: 600; color: #1e3c72;">
+                Even capturing just 0.1% of the global emerging market bond investors would bring <span class="highlight">$3 billion</span> in new investment to Georgia.
+            </p>
+            <span class="slide-number">6</span>
+        </div>
+
+        <!-- Slide 7: Addressing Concerns -->
+        <div class="slide">
+            <h2>❓ Addressing Key Concerns</h2>
+            
+            <div class="risk-grid">
+                <div class="risk-card">
+                    <h4>Is this risky or experimental?</h4>
+                    <p class="answer">No - it's proven technology</p>
+                    <p>Tokenized bonds use the same legal structure as traditional bonds, just with blockchain settlement. Multiple jurisdictions have successfully issued them (Singapore, Switzerland, World Bank). You maintain full regulatory control.</p>
+                </div>
+
+                <div class="risk-card">
+                    <h4>Will this destabilize our currency?</h4>
+                    <p class="answer">No - it strengthens the GEL</p>
+                    <p>Foreign investors still need to purchase GEL to buy GEL-denominated bonds. This actually <strong>increases demand for GEL</strong>. You maintain all existing capital controls.</p>
+                </div>
+
+                <div class="risk-card">
+                    <h4>Is Solana credible enough?</h4>
+                    <p class="answer">Yes - institutional grade</p>
+                    <p>Solana is a top-5 blockchain globally, used by Visa, Shopify, and explored by various central banks. It processes 3,000+ transactions per second with 99.9%+ uptime. The Solana Foundation offers full technical support.</p>
+                </div>
+
+                <div class="risk-card">
+                    <h4>What about regulatory compliance?</h4>
+                    <p class="answer">You stay in full control</p>
+                    <p>This is just a new distribution channel - like adding online banking to physical branches. All existing securities laws, KYC/AML requirements, and investor protections remain in place. You set all the rules.</p>
+                </div>
+
+                <div class="risk-card">
+                    <h4>What if blockchain technology fails?</h4>
+                    <p class="answer">Built-in redundancy</p>
+                    <p>Traditional bonds remain valid and enforceable regardless of technology. Blockchain is just the settlement layer - the legal obligation remains unchanged. You're not dependent on any single technology.</p>
+                </div>
+
+                <div class="risk-card">
+                    <h4>Will this be expensive to implement?</h4>
+                    <p class="answer">Cost-effective solution</p>
+                    <p>Solana Foundation is offering technical infrastructure. Implementation costs are minimal compared to potential savings from lower borrowing costs. Many administrative costs actually <strong>decrease</strong> with automation.</p>
+                </div>
+            </div>
+            <span class="slide-number">7</span>
+        </div>
+
+        <!-- Slide 8: Competitive Landscape -->
+        <div class="slide">
+            <h2>🌎 The Competitive Reality</h2>
+            
+            <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%); padding: 40px; border-radius: 12px; color: white; margin: 30px 0;">
+                <h3 style="color: white; margin-bottom: 20px;">⚠️ Georgia Is Competing for Foreign Capital</h3>
+                <p style="font-size: 20px; line-height: 1.8;">
+                    Other emerging markets are experimenting with blockchain-based securities. <strong>First movers capture attention, investment, and establish standards.</strong> If Georgia waits, you'll be playing catch-up while competitors lead.
+                </p>
+            </div>
+
+            <h3 style="margin-top: 50px;">What Other Countries Are Doing</h3>
+            <ul class="key-points">
+                <li><strong>El Salvador:</strong> Launched Bitcoin bonds to attract crypto-native investors</li>
+                <li><strong>Switzerland:</strong> Multiple tokenized bond issuances through SIX Digital Exchange</li>
+                <li><strong>Singapore:</strong> Central bank actively testing tokenized securities</li>
+                <li><strong>World Bank:</strong> Issued blockchain bonds raising millions in minutes</li>
+                <li><strong>UAE:</strong> Dubai establishing itself as a digital asset hub</li>
+            </ul>
+
+            <div class="cta-box" style="margin-top: 50px;">
+                <h3>The Choice Is Clear</h3>
+                <p style="font-size: 20px; line-height: 1.8;">
+                    Lead the Caucasus region in fintech innovation, or watch as neighboring countries capture this opportunity. <strong>First-mover advantage matters.</strong>
+                </p>
+            </div>
+            <span class="slide-number">8</span>
+        </div>
+
+        <!-- Slide 9: Implementation Plan -->
+        <div class="slide">
+            <h2>📋 Proposed Implementation Plan</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h4>Pilot Program Launch (Months 1-3)</h4>
+                        <p>Start with a single bond issuance (GEL 50-100M equivalent) to test the system. Select a liquid, well-known bond from the existing market. This minimizes risk while demonstrating concept.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h4>Regulatory Framework (Months 2-4)</h4>
+                        <p>Work with Solana Foundation and legal experts to ensure full compliance with Georgian securities law and international standards. Establish KYC/AML procedures for tokenized bonds.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h4>Technical Integration (Months 3-6)</h4>
+                        <p>Solana Foundation provides technical infrastructure. Integrate with existing Ministry of Finance systems. Train relevant staff on blockchain settlement procedures.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h4>Marketing & Launch (Months 6-9)</h4>
+                        <p>Coordinate international PR campaign highlighting Georgia's innovation. Target crypto-native investors, emerging market funds, and fintech media. Launch full program with multiple bond offerings.</p>
+                    </div>
+                </div>
+
+                
