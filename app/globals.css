@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Georgian font support */
+@font-face {
+  font-family: 'Georgian';
+  src: local('BPG Arial'),
+       local('Sylfaen'),
+       local('DejaVu Sans');
+}
+
+.georgian-text {
+  font-family: 'Georgian', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Price animation */
+@keyframes priceUp {
+  0%, 100% { color: inherit; }
+  50% { color: #10b981; }
+}
+
+@keyframes priceDown {
+  0%, 100% { color: inherit; }
+  50% { color: #ef4444; }
+}
+
+.price-up {
+  animation: priceUp 0.5s ease-in-out;
+}
+
+.price-down {
+  animation: priceDown 0.5s ease-in-out;
+}
